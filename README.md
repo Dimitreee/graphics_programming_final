@@ -1,4 +1,4 @@
-# graphics_programming_final
+# Graphics programming coursework
 Quick demo of a graphics programming project for the final project of the course.
 
 [![preview](images/preview.png)]()
