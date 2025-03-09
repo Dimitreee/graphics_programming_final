@@ -1,7 +1,7 @@
 # Graphics programming coursework
 Quick demo of a graphics programming project for the final project of the course.
 
-[![preview](images/preview.png)]()
+[![preview](images/Screenshot 2025-03-10 at 01.21.25.png)]()
 
 ## Description
 
