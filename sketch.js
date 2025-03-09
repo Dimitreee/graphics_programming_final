@@ -26,9 +26,6 @@ function draw() {
 
 function calculateModulePosition(index) {
   let idx = index;
-  if (index >= 2) {
-    idx++;
-  }
 
   var positionX = (idx % 3) * 180;
   var positionY = Math.floor(idx / 3) * 140;

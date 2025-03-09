@@ -376,3 +376,59 @@ function pixelate(image, faces) {
   outImage.updatePixels();
   return outImage;
 }
+
+function gaussianBlur(img, kernelSize) {
+  const radius = Math.floor(kernelSize / 2);
+  const kernel = [];
+  const sigma = radius / 3; // Standard deviation
+  const twoSigmaSquare = 2 * sigma * sigma;
+  let total = 0;
+
+  // Create Gaussian kernel
+  for (let y = -radius; y <= radius; y++) {
+    for (let x = -radius; x <= radius; x++) {
+      const g = Math.exp(-(x * x + y * y) / twoSigmaSquare) / (Math.PI * twoSigmaSquare);
+      kernel.push(g);
+      total += g;
+    }
+  }
+
+  // Normalize the kernel
+  for (let i = 0; i < kernel.length; i++) {
+    kernel[i] /= total;
+  }
+
+  const blurredImage = createImage(img.width, img.height);
+  blurredImage.loadPixels();
+  img.loadPixels();
+
+  // Apply the kernel to each pixel
+  for (let x = 0; x < img.width; x++) {
+    for (let y = 0; y < img.height; y++) {
+      let r = 0, g = 0, b = 0;
+      let kernelIndex = 0;
+
+      for (let ky = -radius; ky <= radius; ky++) {
+        for (let kx = -radius; kx <= radius; kx++) {
+          const pixelX = constrain(x + kx, 0, img.width - 1);
+          const pixelY = constrain(y + ky, 0, img.height - 1);
+          const index = (pixelX + pixelY * img.width) * 4;
+
+          r += img.pixels[index + 0] * kernel[kernelIndex];
+          g += img.pixels[index + 1] * kernel[kernelIndex];
+          b += img.pixels[index + 2] * kernel[kernelIndex];
+          kernelIndex++;
+        }
+      }
+
+      const newIndex = (x + y * img.width) * 4;
+      blurredImage.pixels[newIndex + 0] = r;
+      blurredImage.pixels[newIndex + 1] = g;
+      blurredImage.pixels[newIndex + 2] = b;
+      blurredImage.pixels[newIndex + 3] = 255; // Alpha
+    }
+  }
+
+  blurredImage.updatePixels();
+  return blurredImage;
+}
