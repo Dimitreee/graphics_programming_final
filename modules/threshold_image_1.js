@@ -2,16 +2,16 @@
   global.registerModule("threshold_image_1", function (module) {
     var thresholdSlider;
 
-    const setup = (posX, posY) => {
+    function setup(posX, posY) {
       thresholdSlider = global.createSlider(0, 100, 20);
 
       thresholdSlider.position(
         posX + global.SINGLE_FRAME_WIDTH / 2 - thresholdSlider.width / 2,
         posY + global.SINGLE_FRAME_HEIGHT - 20,
       );
-    };
+    }
 
-    const draw = (posX, posY) => {
+    function draw(posX, posY) {
       global.fill(0, 0, 255);
       global.rect(posX, posY, 160, 120);
 
@@ -26,7 +26,7 @@
           in_img.height,
         );
       }
-    };
+    }
 
     module.exports = {
       setup: setup,

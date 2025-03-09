@@ -2,7 +2,7 @@
   global.registerModule("grayscale_and_brightness", function (module) {
     var grayScaleBrightnessSlider;
 
-    const setup = (posX, posY) => {
+    function setup(posX, posY) {
       // Increase brightness by 20% default
       grayScaleBrightnessSlider = global.createSlider(0, 100, 20);
 
@@ -12,9 +12,9 @@
           grayScaleBrightnessSlider.width / 2,
         posY + global.SINGLE_FRAME_HEIGHT - 20,
       );
-    };
+    }
 
-    const draw = (posX, posY) => {
+    function draw(posX, posY) {
       global.fill(0, 0, 255);
       global.rect(posX, posY, 160, 120);
 
@@ -29,7 +29,7 @@
           in_img.height,
         );
       }
-    };
+    }
 
     module.exports = {
       setup: setup,
