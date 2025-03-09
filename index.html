@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>FaceDetection</title>
+
+    <script src="./libraries/p5.min.js"></script>
+    <script src="./libraries/p5.dom.js"></script>
+    <script src="./libraries/objectdetect.js"></script>
+    <script src="./libraries/objectdetect.frontalface.js"></script>
+    <script src="./filters.js"></script>
+    <script>
+        window.registerModule = function (name, init) {
+            if (!window.modules) {
+                window.modules = [];
+            }
+            console.log(name + '::Module registered');
+            let module = {
+                name,
+                exports: {}
+            }
+
+            init(module)
+
+            window.modules.push({ name, module });
+        };
+
+    </script>
+    <script src="./modules/webcam_image.js"></script>
+    <script src="./modules/grayscale_and_brightness.js"></script>
+    <script src="./modules/red_channel.js"></script>
+    <script src="./modules/green_channel.js"></script>
+    <script src="./modules/blue_channel.js"></script>
+    <script src="./modules/threshold_image_1.js"></script>
+    <script src="./modules/threshold_image_2.js"></script>
+    <script src="./modules/threshold_image_3.js"></script>
+    <script src="./modules/webcam_image_repeat.js"></script>
+    <script src="./modules/color_space_1.js"></script>
+    <script src="./modules/color_space_2.js"></script>
+    <script src="modules/face_detection.js"></script>
+    <script src="modules/treshold_image_from_colour_space_1.js"></script>
+    <script src="modules/treshold_image_from_colour_space_2.js"></script>
+
+    <script src="sketch.js"></script>
+</head>
+</html>
